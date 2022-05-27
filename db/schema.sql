@@ -1,0 +1,6 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS hack_blogger;
+
+-- CREATE DATABASE
+CREATE DATABASE hack_blogger;
+
