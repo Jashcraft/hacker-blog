@@ -14,7 +14,7 @@ router.get('/', withAuth, async (req, res) => {
   })
   console.log(userPosts)
 
-  res.render('dashboard', {posts: userPosts})
+  res.render('dashboard', {posts: userPosts, loggedIn: req.session.loggedIn})
 })
 
 router.get('/new', withAuth, (req, res) => {
