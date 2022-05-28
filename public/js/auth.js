@@ -39,8 +39,6 @@ const loginHandler = async e => {
     }
 }
 
-console.log(window.location.pathname);
-
 if(window.location.pathname === '/login'){
     document.querySelector('#login').addEventListener('click', loginHandler);
 } else if (window.location.pathname === '/signup') {

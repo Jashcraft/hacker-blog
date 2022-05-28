@@ -6,7 +6,11 @@ router.post('/', async (req, res) => {
     const { username, email, password } = req.body;
     const userData = await User.create({ username, email, password });
 
-    res.json(userData);
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.userId = userData.id;
+      res.json({user: userData, message: 'Logged In'})
+    })
   } catch (err) {
     res.json(err)
   }
@@ -14,7 +18,6 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const {username, password} = req.body;
-  console.log('req', req)
   try {
       const userData = await User.findOne({
         where: {
@@ -29,8 +32,11 @@ router.post('/login', async (req, res) => {
       if(!isValidPw){
         return res.status(400).json('Invalid Credentials');
       }
-
-      return res.json({user: userData, message: 'Logged In'})
+      req.session.save(() => {
+        req.session.loggedIn = true;
+        req.session.userId = userData.id;
+        res.json({user: userData, message: 'Logged In'})
+      })
   } catch (err) {
     console.log(err);
     return res.status(500).json(err);

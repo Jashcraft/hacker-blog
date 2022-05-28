@@ -1,3 +1,9 @@
 const User = require('./User');
+const BlogPost = require('./BlogPost');
 
-module.exports = {User}
+BlogPost.belongsTo(User, {
+  onDelete: 'CASCADE',
+  foreignKey: 'userId'
+});
+
+module.exports = {User, BlogPost}

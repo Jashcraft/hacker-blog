@@ -1,0 +1,15 @@
+<div id="blog-posts" class="container">
+  {{#each posts}}
+  <article class="card">
+    <div class="card-header flex-row justify-space-between">
+      <h2>{{title}}</h2>
+    </div>
+    <div class="card-body">
+      {{body}}
+    </div>
+  </article>
+  {{/each}}
+
+  <a href="/dashboard/new"><button class="btn btn-primary mt-3">New Blog Post</button></a>
+
+</div>
