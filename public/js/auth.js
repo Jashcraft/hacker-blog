@@ -19,6 +19,15 @@ const signupHandler = async e => {
 
 }
 
+const logoutHandler = async e => {
+  e.preventDefault();
+  await fetch('/api/users/logout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  });
+  document.location.replace('/');
+}
+
 const loginHandler = async e => {
     e.preventDefault();
     const username = document.querySelector('#username').value.trim();
@@ -44,3 +53,5 @@ if(window.location.pathname === '/login'){
 } else if (window.location.pathname === '/signup') {
     document.querySelector('#signup').addEventListener('click', signupHandler);
 }
+
+document.querySelector('#logout-button').addEventListener('click', logoutHandler);
